@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+.container {
+  padding: 15px;
+  border-style: solid;
+  &.a {
+    border-color: red;
+  }
+  &.b {
+    border-color: green;
+  }
+  &.c {
+    border-color: blue;
+  }
+}
+
+span {
+  &.a {
+    font-weight: bold;
+    color: red;
+  }
+  &.b {
+    font-weight: bold;
+    color: green;
+  }
+  &.c {
+    font-weight: bold;
+    color: blue;
+  }
+}

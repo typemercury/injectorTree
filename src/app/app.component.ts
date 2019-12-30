@@ -1,4 +1,15 @@
-import { Component } from '@angular/core';
+import { DComponent } from './d/d.component';
+import {
+  Component,
+  SystemJsNgModuleLoader,
+  Compiler,
+  NgModuleRef,
+  NgModuleFactory,
+  ViewChild,
+  TemplateRef,
+  ViewContainerRef,
+  ComponentRef
+} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +18,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'injectorTree';
+
+  @ViewChild('temp', { static: true }) template: TemplateRef<any>;
+
+  test = DComponent;
+  moduleFactory: NgModuleFactory<any>;
+
+  constructor(private compiler: Compiler) {}
+
+  testLazyLoad() {
+    import('./d/d.module')
+      .then(m => this.compiler.compileModuleAsync(m.DModule))
+      .then(moduleFactory => {
+        this.moduleFactory = moduleFactory;
+      });
+  }
 }
